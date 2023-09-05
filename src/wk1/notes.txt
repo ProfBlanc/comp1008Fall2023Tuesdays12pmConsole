@@ -1,0 +1,39 @@
+Data Types
+
+CS
+    int
+    float
+    double
+    string: primitive
+    short
+    object
+    char
+    bool
+    long
+    byte
+    sbyte
+    null
+    ulong
+    uint
+Java
+    int
+    byte
+    short
+    long
+    float
+    double
+    char
+    boolean
+    String: reference data type
+
+Output
+    CS
+        Console.Write/WriteLine()
+    Java
+        System.out.print/println
+Input
+    CS
+        Console.ReadLine()
+   Java
+        Scanner object: package: java.util
+            Scanner input = new Scanner(System.in);
