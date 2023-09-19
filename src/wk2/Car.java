@@ -1,6 +1,6 @@
 package wk2;
 
-public class Car{
+class Car{
     /*
     attributes/chars of car
         how the object looks
@@ -13,8 +13,17 @@ public class Car{
     
     //actions: 
     
-    void increaseSpeed(int amountToIncreaseBy){}
-    void decreaseSpeed(int amountToDecreaseBy){}
+    void increaseSpeed(int amountToIncreaseBy){
+        if(amountToIncreaseBy >= 1 && amountToIncreaseBy <= 25){
+            speed += amountToIncreaseBy;
+        }
+    }
+    void decreaseSpeed(int amountToDecreaseBy){
+        if(amountToDecreaseBy >= 1 && amountToDecreaseBy <= 25 && speed - amountToDecreaseBy >= 0){
+            
+            speed -= amountToDecreaseBy;
+        }
+    }
     void brake(){}
     boolean isEngineOn(){
         return rpm >= 10;
@@ -64,4 +73,33 @@ public class Car{
     */
     
     
+    //a constructor: a special method: once creating the object
+    //exception: no return data type. name same name as class
+    public Car(){}
+    
+    public Car(String make){
+        this.make = make;
+    }
+    public Car(String make, String model){
+        this.make = make;
+        this.model = model;
+    }    
+    //public Car(String model, String make){}  //illegal
+    
+    public Car(String make, String model, short year){
+        this(make, model);
+        this.year = year;
+    }
+    public Car(short year, String make, String model){
+        this(make, model, year);
+    }
+    //unique method signature: method header : first line of method
+    public Car(String make, short year, String model){
+        this(make, model, year);
+    }
+    
+    @Override
+    public String toString(){
+        return String.format("Make=%s,Model=%s,Color=%s,year=%d,rpm=%d,speed=%d", make, model, color, year, rpm,speed);
+    }
 }
