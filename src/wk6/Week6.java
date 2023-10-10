@@ -198,8 +198,20 @@ catch (IllegalArgumentException e){
     static void example10(){
         example1();
     }
+    static void example11(){
+
+        try{
+            House house = new House("1 Georgian Drive");
+            System.out.println(house);
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+
+    }
+
     public static void main(String[] args) {
 
-        example10();
+        example11();
     }
 }
