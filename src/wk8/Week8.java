@@ -10,7 +10,12 @@ import java.util.Scanner;
 public class Week8 {
 
     public static void main(String[] args) {
-        example6();
+        try {
+            example7();
+        }
+        catch (Exception e){
+            System.err.println();
+        }
     }
 
     static void example1(){
@@ -176,5 +181,68 @@ public class Week8 {
         catch (Exception e){
             System.err.println(e);
         }
+    }
+
+    static void example7() throws Exception{
+
+        /*
+        Create a college semester timetable program
+
+        Ask user for year, term
+        Create the neccessary folders
+
+        2023
+            fall
+
+        ask user for day of week.
+        (no need to validate)
+        tuesday
+        2023
+            fall
+                tuesday.txt
+
+        ask user for time and courses for that day
+        Enter time of first course
+            12pm
+        Enter course name at {time} on {day of week}
+        Enter course name at 12pm on tuesday
+            comp1008
+        write to tuesday.txt
+            12pm-comp1008\n
+         */
+
+        Scanner input = new Scanner(System.in);
+        Path root = Paths.get("src", "timetable");
+        //if(Files.exists(root) || root.toFile().exists()){
+        if(!root.toFile().exists()){
+            Files.createDirectory(root);
+        }
+        //continue
+        System.out.println("Enter year");
+        String year = input.nextLine();
+        System.out.println("Enter semester (winter, spring, fall)");
+        String semester = input.nextLine();
+        System.out.printf("You are now doing to input your schedule for %s %s semester%n", year, semester);
+        System.out.println("Enter day of the week");
+        String dayOfWeek = input.nextLine();
+        System.out.println("Enter start time of any course");
+        String startTime = input.nextLine();
+        System.out.printf("Enter the course code for your %s class at %s%n", dayOfWeek, startTime);
+        String courseCode = input.nextLine();
+
+        Path path2 = root.resolve(year + "/" + semester);
+        if(!Files.exists(path2)){
+            Files.createDirectories(path2);
+        }
+        Path path3 = path2.resolve(dayOfWeek + ".txt");
+
+        Files.createFile(path3);
+
+        Files.writeString(path3,
+        String.format("%s:%s%n", startTime, courseCode),
+        StandardOpenOption.APPEND);
+
+
+
     }
 }
