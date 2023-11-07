@@ -1,0 +1,37 @@
+Create a Lion class
+based on Cat class
+
+add an instance variable
+
+override the toString to include this 
+new instance variable
+
+
+
+
+
+
+
+
+Student
+	name, grades, age:	private => get, set
+HonorRollStudent
+	based on Student
+	enforce grade >=80 => override setGrade
+	add instance variable: prizes
+
+MatureStudent
+	based on Student
+	enforce age >= 30 => override setAge
+	add instance variable: job
+
+
+
+
+
+
+
+
+
+
+
