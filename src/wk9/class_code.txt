@@ -1,0 +1,142 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+class Animal{
+    
+    private String name;
+    private double weight;
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setWeight(double weight){
+        this.weight = weight;
+    }
+    public double getWeight(){
+        return weight;
+    }
+    
+    public String toString(){
+        
+        return String.format("Name=%s, Weight=%.1f%n", name, weight);
+    }
+    public String mystery(){
+        return "Which animal am I?";
+    }
+}
+
+class Cat extends Animal{
+    
+    private double anger;
+    
+    public String meow(){
+        return "Meow, Meow!";
+    }
+    
+    public void setAnger(double anger){
+        this.anger = anger;
+    }
+    public double getAnger(){
+        return anger;
+    }
+    
+    public String mystery(){
+        return "Hello Kitty";
+    }
+    
+    //Anontation: needed? NO. Then why? Talks to compiler
+    @Override
+    public String toString(){
+        
+       /* return String.format("Name=%s, Weight=%.1f, Anger=%.1f%n",
+        getName(), getWeight(), anger
+        );
+        */
+        return super.toString().substring(0, super.toString().length() - 1) + ", Anger = " + anger;
+    }
+    
+}
+class HelloWorld {
+    
+    /*
+        accessibility level
+            private: 
+        inherit
+            all non-private entities
+                * with exceptions
+                
+    Inhertiance: creating something NEW
+    from something OLD (previously exists)
+    
+    
+    OLD                     NEW
+    
+    base class              derived class
+    parent class            child class
+    super class             sub class      
+    
+all non-private entities from super class
+are inherited in sub class
+    exception: 
+        constructors: only default 
+
+overriding: create a new implementation
+            old implementation N/A
+                only for methods
+
+overloading: variation
+            dif param, data types
+
+
+Iphone
+    15
+    SE    Regular     Pro       ProMax
+    
+
+every class has inheritance
+    BASED on Object class
+        toString
+        default constructor
+        equals(Object o)
+        hashCode()
+
+newer = more specific
+
+Animal          Cat         Lion, Tiger, Panther, etc       
+
+Single-class inheritance
+
+    */
+    
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+        
+        HelloWorld hw = new HelloWorld();
+        System.out.println(hw);
+        
+        Cat c = new Cat();
+        System.out.println(c.getWeight());
+        c.setWeight(10);
+        c.setName("Cat");
+        System.out.println(c.getWeight());
+        System.out.println(c);
+        System.out.println(c.meow());
+
+        Animal a1 = new Animal();
+        Animal a2 = new Cat();
+        //System.out.println(a.meow());
+       // a.getAnger();
+       System.out.println(a1.mystery());
+       System.out.println(a2.mystery());
+       
+       //Cat c1 = new Animal();
+       
+       System.out.println( c instanceof Animal    );
+       
+       System.out.println( c );
+       
+        
+    }
+}
