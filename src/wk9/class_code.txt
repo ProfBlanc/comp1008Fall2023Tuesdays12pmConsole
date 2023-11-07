@@ -1,5 +1,6 @@
 // Online Java Compiler
 // Use this editor to write, compile and run your Java code online
+
 class Animal{
     
     private String name;
@@ -57,7 +58,156 @@ class Cat extends Animal{
         return super.toString().substring(0, super.toString().length() - 1) + ", Anger = " + anger;
     }
     
+    public Cat(){}
+    public Cat(String name, double weight, double anger){
+        setName(name);
+        setWeight(weight);
+        this.anger = anger;
+    }
+    
 }
+
+class Lion extends Cat{
+    
+    String gender = "male";
+    
+    public Lion(){}
+    
+    @Override
+    public void setWeight(double weight){
+        if(weight < 100){
+            throw new IllegalArgumentException("Weight is too small for a lion");
+        }
+        
+    }
+    
+    public Lion(String gender){
+        this.gender = gender;
+    }
+    public Lion(String gender, double anger, double weight, String name){
+        super(name, weight, anger);
+        
+        this.gender = gender;
+    }
+    @Override
+    public String toString(){
+        return super.toString() + ", gender = " + gender;
+    }
+    
+}
+
+class Student{
+    
+    private String name ="Joe";
+    private double grade;
+    private int age;
+    
+    public int getAge(){
+        return age;
+    }
+    public void setAge(int age){
+        if(grade >= 0 && age <= 150){
+            this.age = age;
+            
+        }
+    }
+
+    public double getGrade(){
+        return grade;
+    }
+    public void setGrade(double grade){
+        if(grade >= 0 && grade <= 100)
+            this.grade = grade;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        if(name.length() >= 3)
+            this.name = name;
+            
+    }
+    
+    @Override
+    public String toString(){
+        return String.format("Name=%s, Age=%d, Grade=%.1f", name, age, grade);
+    }
+    
+    public Student(){}
+    public Student(String name, int age, double grade){
+        setName(name);
+        setAge(age);
+        setGrade(grade);
+    }
+}
+
+class HonorRollStudent extends Student{
+    
+    private String prizes = "";
+    
+    public void addPrize(String prize ){
+        if(!prizes.contains(prize)){
+            prizes += prize + "\t";
+        }
+    }
+    public String getPrizes(){
+        return prizes;
+    }
+    
+    @Override
+    public void setGrade(double grade){
+        if(grade < 80)
+        throw new IllegalArgumentException(grade + " is too low for Honor Roll Student");
+        
+        super.setGrade(grade);
+        
+    }
+    
+    @Override
+    public String toString(){
+        
+        return super.toString() + ", prizes="+prizes;
+    }
+    
+    public HonorRollStudent(){}
+    public HonorRollStudent(String name, int age, double grade){
+        super(name, age, grade);
+    }
+    
+}
+
+class MatureStudent extends Student{
+    private String job = "";
+    public void setJob(String job){
+        this.job = job;
+    }
+    public String getJob(){
+        return job;
+    }
+    @Override
+    public void setAge(int age) {
+        
+        if(age < 30){
+            throw new IllegalArgumentException("Need to be at least 30 years old");
+        }
+        
+        super.setAge(age);
+        
+    }
+    
+    @Override
+    public String toString(){
+        return super.toString() + ", job=" + job;
+    }
+    
+        public MatureStudent(){}
+    public MatureStudent(String name, int age, double grade){
+        super(name, age, grade);
+    }
+
+}
+
 class HelloWorld {
     
     /*
@@ -111,7 +261,25 @@ Single-class inheritance
     */
     
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+       
+       
+        example2();
+    }
+    
+    static void example2(){
+        
+        Student s = new Student("John", 18, 99.9);
+        MatureStudent ms = new MatureStudent("Mary", 35, 100);
+        HonorRollStudent hrs = new HonorRollStudent("Smart", 25, 100);
+        
+        System.out.println(s);
+        System.out.println(ms);
+        System.out.println(hrs);
+        
+    }
+    static void example1(){
+        
+         System.out.println("Hello, World!");
         
         HelloWorld hw = new HelloWorld();
         System.out.println(hw);
@@ -136,7 +304,8 @@ Single-class inheritance
        System.out.println( c instanceof Animal    );
        
        System.out.println( c );
-       
-        
+       //String gender, double anger, double weight, String name
+       Lion l = new Lion("female", 100, 150, "Nala");
+       System.out.println(l);
     }
 }
